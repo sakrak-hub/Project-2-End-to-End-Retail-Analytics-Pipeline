@@ -1,0 +1,42 @@
+{"timestamp":"2025-08-01T00:00:51.087176","level":"info","event":"DAG bundles loaded: dags-folder","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-08-01T00:00:51.088018","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/upload_to_s3.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-08-01T00:00:51.728835Z","level":"error","event":"warning: `VIRTUAL_ENV=/home/airflow/.local` does not match the project environment path `.venv` and will be ignored; use `--active` to target the active environment instead","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:00:51.732166Z","level":"error","event":"warning: Ignoring existing virtual environment linked to non-existent Python interpreter: .venv/bin/python3 -> python","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:00:53.381541Z","level":"error","event":"Downloading cpython-3.13.3-linux-x86_64-gnu (download) (20.3MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:00:56.308201Z","level":"error","event":" Downloading cpython-3.13.3-linux-x86_64-gnu (download)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:00:56.519543Z","level":"error","event":"Using CPython 3.13.3","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:20.986789Z","level":"error","event":"Removed virtual environment at: .venv","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:20.987620Z","level":"error","event":"Creating virtual environment at: .venv","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.694728Z","level":"error","event":"Downloading pygments (1.2MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.696719Z","level":"error","event":"Downloading numpy (15.9MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.698248Z","level":"error","event":"Downloading babel (9.7MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.698784Z","level":"error","event":"Downloading cryptography (4.2MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.699499Z","level":"error","event":"Downloading snowflake-connector-python (2.6MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.700424Z","level":"error","event":"Downloading faker (1.9MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.709829Z","level":"error","event":"Downloading pandas (11.5MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.711403Z","level":"error","event":"Downloading botocore (13.2MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.713794Z","level":"error","event":"Downloading fastparquet (1.7MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.715149Z","level":"error","event":"Downloading debugpy (4.0MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.765147Z","level":"error","event":"Downloading jedi (1.5MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.767510Z","level":"error","event":"Downloading pydantic-core (1.9MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.769304Z","level":"error","event":"Downloading pyarrow (40.8MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.769749Z","level":"error","event":"Downloading cramjam (1.9MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:21.770154Z","level":"error","event":"Downloading networkx (1.9MiB)","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:24.915680Z","level":"error","event":" Downloading pygments","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:25.397937Z","level":"error","event":" Downloading fastparquet","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:25.467879Z","level":"error","event":" Downloading pydantic-core","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:25.493069Z","level":"error","event":" Downloading jedi","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:25.496667Z","level":"error","event":" Downloading faker","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:25.538340Z","level":"error","event":" Downloading cramjam","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:25.539696Z","level":"error","event":" Downloading networkx","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:26.010208Z","level":"error","event":" Downloading snowflake-connector-python","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:26.629265Z","level":"error","event":" Downloading debugpy","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:26.944484Z","level":"error","event":" Downloading cryptography","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:28.603122Z","level":"error","event":" Downloading babel","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:29.684459Z","level":"error","event":" Downloading botocore","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:29.715277Z","level":"error","event":" Downloading numpy","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:29.805939Z","level":"error","event":" Downloading pandas","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:37.552222Z","level":"error","event":" Downloading pyarrow","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:37.610148Z","level":"error","event":"warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:37.619391Z","level":"error","event":"         If the cache and target directories are on different filesystems, hardlinking may not be supported.","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:01:37.623309Z","level":"error","event":"         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.","chan":"stderr","logger":"task"}

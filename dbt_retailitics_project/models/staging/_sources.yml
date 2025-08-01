@@ -1,0 +1,226 @@
+version: 2
+
+sources:
+  - name: raw_s3_data
+    schema: retailitics_transactions
+    description: "Raw transaction data from S3 via external table"
+    
+    # Data freshness check - adjust based on your data loading schedule
+    # freshness:
+    #   warn_after: {count: 2, period: hour}
+    #   error_after: {count: 6, period: hour}
+    # loaded_at_field: datetime  # Uncomment if you want freshness checks
+    
+    tables:
+      - name: transactions
+        description: "Complete transaction data from S3 via external table"
+        
+        # Table-level tests
+        tests:
+          # Data volume expectations
+          - dbt_expectations.expect_table_row_count_to_be_between:
+              min_value: 1000
+              max_value: 10000000  # Adjust based on your typical volumes
+          
+          # Ensure all transactions are unique
+          - dbt_utils.expression_is_true:
+              expression: "count(distinct transaction_id) = count(*)"
+              config:
+                severity: error
+          
+          # Business logic: subtotal + tax should roughly equal total
+          - dbt_utils.expression_is_true:
+              expression: "avg(abs(subtotal + tax_amount - total_amount)) < 0.01"
+              config:
+                severity: warn
+                
+          # Data recency check (adjust date as needed)
+          - dbt_utils.expression_is_true:
+              expression: "max(date) >= current_date - interval '7 days'"
+              config:
+                severity: warn
+
+        columns:
+          - name: transaction_id
+            description: "Unique identifier for each transaction"
+            tests:
+              - unique:
+                  config:
+                    severity: error
+              - not_null:
+                  config:
+                    severity: error
+              # Ensure transaction IDs follow expected format (adjust regex as needed)
+              - dbt_expectations.expect_column_values_to_match_regex:
+                  regex: "^[A-Za-z0-9_-]+$"
+
+          - name: date
+            description: "Transaction date"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Ensure dates are reasonable (not too old, not future)
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: "'2020-01-01'"
+                  max_value: "current_date + interval '1 day'"
+              # Check date format consistency
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: date
+
+          - name: datetime
+            description: "Transaction timestamp"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Ensure datetime is within reasonable bounds
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: "'2020-01-01 00:00:00'"
+                  max_value: "current_timestamp + interval '1 hour'"
+              # Ensure datetime column has expected precision
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: timestamp
+
+          - name: customer_id
+            description: "Customer identifier"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Check customer ID format (adjust based on your format)
+              - dbt_expectations.expect_column_values_to_match_regex:
+                  regex: "^[A-Za-z0-9_-]+$"
+              # Ensure reasonable number of unique customers
+              - dbt_expectations.expect_column_unique_value_count_to_be_between:
+                  min_value: 100
+                  max_value: 1000000
+
+          - name: store_id
+            description: "Store identifier"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Ensure store IDs are from known set (adjust values)
+              - dbt_expectations.expect_column_distinct_count_to_be_less_than:
+                  value: 1000  # Adjust based on your store count
+              # Optional: if you have specific store ID format
+              # - dbt_expectations.expect_column_values_to_match_regex:
+              #     regex: "^STORE_[0-9]+$"
+
+          - name: payment_method
+            description: "Method of payment"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Validate against known payment methods
+              - accepted_values:
+                  values: ['credit_card', 'debit_card', 'cash', 'digital_wallet', 'gift_card', 'check']
+                  config:
+                    severity: warn  # Warn instead of error for new payment methods
+
+          - name: subtotal
+            description: "Subtotal amount before tax"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Ensure positive values (or allow small negatives for returns)
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: -1000  # Allow for returns
+                  max_value: 50000   # Adjust based on your business
+              # Check for reasonable statistical distribution
+              - dbt_expectations.expect_column_mean_to_be_between:
+                  min_value: 5
+                  max_value: 500
+              # Ensure proper decimal precision
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: numeric
+
+          - name: tax_amount
+            description: "Tax amount"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Tax should be non-negative (usually)
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0
+                  max_value: 5000  # Adjust based on your max transaction
+              # Tax should be reasonable percentage of subtotal
+              - dbt_utils.expression_is_true:
+                  expression: "tax_amount <= subtotal * 0.2"  # Max 20% tax rate
+                  config:
+                    severity: warn
+
+          - name: total_amount
+            description: "Total transaction amount"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Total should be positive (or allow small negatives for full refunds)
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: -1000
+                  max_value: 55000
+              # Total should be greater than or equal to subtotal
+              - dbt_utils.expression_is_true:
+                  expression: "total_amount >= subtotal"
+                  config:
+                    severity: warn
+
+          - name: product_id
+            description: "Product identifier"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Check product ID format
+              - dbt_expectations.expect_column_values_to_match_regex:
+                  regex: "^[A-Za-z0-9_-]+$"
+              # Ensure reasonable number of unique products
+              - dbt_expectations.expect_column_distinct_count_to_be_less_than:
+                  value: 100000  # Adjust based on your catalog size
+
+          - name: quantity
+            description: "Quantity of items"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Quantity should be positive integer
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 1
+                  max_value: 100  # Adjust based on your business rules
+              - dbt_expectations.expect_column_values_to_be_of_type:
+                  column_type: integer
+
+          - name: unit_price
+            description: "Price per unit"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Unit price should be positive
+              - dbt_expectations.expect_column_values_to_be_between:
+                  min_value: 0.01
+                  max_value: 10000  # Adjust based on your product range
+              # Check that quantity * unit_price is reasonable vs subtotal
+              - dbt_utils.expression_is_true:
+                  expression: "abs(quantity * unit_price - subtotal) <= subtotal * 0.1"
+                  config:
+                    severity: warn
+
+          - name: status
+            description: "Transaction status"
+            tests:
+              - not_null:
+                  config:
+                    severity: error
+              # Validate status values
+              - accepted_values:
+                  values: ['completed', 'pending', 'cancelled', 'refunded', 'failed']
+                  config:
+                    severity: error

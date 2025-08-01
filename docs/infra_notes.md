@@ -1,0 +1,2 @@
+    30/6/2025 - Working on using terraform to use AWS for the retail analytics project. A very dense topic, already made an error of restarting the command line interface and not exporting the credentials. Need to automate that soon. So many moving parts just for chapter one. How to translate this to this project specifically?
+    7/1/2026 - The tf script was the same as in the book but I did not take into account the ami - worked with linux instead of ubuntu ami. Should read through the books carefully.

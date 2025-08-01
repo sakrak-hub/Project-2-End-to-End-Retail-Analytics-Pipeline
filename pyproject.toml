@@ -1,0 +1,22 @@
+[project]
+name = "project-2-end-to-end-retail-analytics-pipeline"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "boto3>=1.39.8",
+    "dbt-core>=1.10.5",
+    "dbt-snowflake>=1.10.0",
+    "faker>=37.4.2",
+    "fastparquet>=2024.11.0",
+    "ipykernel>=6.29.5",
+    "pyarrow>=21.0.0",
+]
+
+[dependency-groups]
+data-validation = []
+dev = [
+    "ipykernel>=6.29.5",
+]
+
