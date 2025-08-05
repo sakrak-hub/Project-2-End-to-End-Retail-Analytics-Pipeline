@@ -40,3 +40,82 @@
 {"timestamp":"2025-08-01T00:01:37.610148Z","level":"error","event":"warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.","chan":"stderr","logger":"task"}
 {"timestamp":"2025-08-01T00:01:37.619391Z","level":"error","event":"         If the cache and target directories are on different filesystems, hardlinking may not be supported.","chan":"stderr","logger":"task"}
 {"timestamp":"2025-08-01T00:01:37.623309Z","level":"error","event":"         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:02:34.318299Z","level":"error","event":"Installed 106 packages in 56.71s","chan":"stderr","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.340356Z","level":"info","event":"Initializing Enhanced Retail Data Generator with Realistic Quality Issues...","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.340808Z","level":"info","event":"======================================================================","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.341113Z","level":"info","event":"Loading existing master data...","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.341524Z","level":"info","event":"Loaded 30 stores, 15000 products, 71500 customers","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.341991Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.342452Z","level":"info","event":"Generating transaction data for 2025-08-01...","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.342853Z","level":"info","event":"Generated 5980 transactions for 2025-08-01","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.343300Z","level":"info","event":"Total revenue: $52,993,281.89","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.343737Z","level":"info","event":"Data quality issues: 780 duplicates, 346 failed, 295 missing timestamps","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.344177Z","level":"info","event":"Files saved: retail_data_v2/transactions_2025-08-01.parquet, retail_data_v2/daily_summary_2025-08-01.json","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.344648Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.345068Z","level":"info","event":"Data generation complete!","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.345531Z","level":"info","event":"======================================================================","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.345995Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.346482Z","level":"info","event":"Enhanced Data Quality Issues Implemented:","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.346939Z","level":"info","event":"✓ 30% Missing Values:","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.347254Z","level":"info","event":"  - 35% missing customer emails","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.347659Z","level":"info","event":"  - 40% missing phone numbers","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.348018Z","level":"info","event":"  - 25% missing addresses","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.348453Z","level":"info","event":"  - 30% missing product descriptions","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.348886Z","level":"info","event":"  - 20% missing cashier IDs","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.349337Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.349796Z","level":"info","event":"✓ 30% Duplicates:","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.350244Z","level":"info","event":"  - 30% duplicate customers with variations","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.350687Z","level":"info","event":"  - 25% duplicate products","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.351122Z","level":"info","event":"  - 15% duplicate transactions","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.351476Z","level":"info","event":"  - 20% duplicate stores","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.351887Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.352262Z","level":"info","event":"✓ Timestamp Issues:","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.352665Z","level":"info","event":"  - 25% delayed timestamps (batch processing)","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.353038Z","level":"info","event":"  - 10% batch processing delays","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.353432Z","level":"info","event":"  - 8% timezone inconsistencies","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.353803Z","level":"info","event":"  - 5% system clock drift","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.354192Z","level":"info","event":"  - 2% future timestamps","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.354557Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.354935Z","level":"info","event":"✓ Additional Real-World Issues:","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.355277Z","level":"info","event":"  - 12% invalid email formats","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.355606Z","level":"info","event":"  - 25% inconsistent phone formatting","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.355935Z","level":"info","event":"  - 8% price inconsistencies","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.356280Z","level":"info","event":"  - 3% negative quantities","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.356552Z","level":"info","event":"  - 5% extreme/unrealistic prices","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.356813Z","level":"info","event":"  - 8% encoding/special character issues","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.357061Z","level":"info","event":"  - 15% data type inconsistencies","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.357323Z","level":"info","event":"  - 10% reference integrity errors","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.357568Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.357812Z","level":"info","event":"======================================================================","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.358070Z","level":"info","event":"Files Generated:","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.358332Z","level":"info","event":"📁 Master Data (generated once):","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.358572Z","level":"info","event":"  - stores.parquet (store information)","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.358814Z","level":"info","event":"  - products.parquet (product catalog)","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.359056Z","level":"info","event":"  - customers.parquet (customer database)","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.359386Z","level":"info","event":"  - data_quality_report.json (quality metrics)","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.359630Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.359874Z","level":"info","event":"📁 Daily Data (generated each run):","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.360114Z","level":"info","event":"  - transactions_2025-08-01.parquet (daily transactions)","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.360356Z","level":"info","event":"  - daily_summary_2025-08-01.json (daily analytics)","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.360597Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.360837Z","level":"info","event":"======================================================================","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.361079Z","level":"info","event":"Usage Examples:","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.361334Z","level":"info","event":"import pandas as pd","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.361575Z","level":"info","event":"import json","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.361816Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.362053Z","level":"info","event":"# Load transaction data","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.362297Z","level":"info","event":"df = pd.read_parquet('retail_data_v2/transactions_2025-08-01.parquet')","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.362568Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.362899Z","level":"info","event":"# Load quality report","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.363151Z","level":"info","event":"with open('retail_data_v2/data_quality_report.json') as f:","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.363398Z","level":"info","event":"    quality_report = json.load(f)","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.363669Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.363987Z","level":"info","event":"# Check for duplicates","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.364211Z","level":"info","event":"duplicates = df[df.duplicated(['customer_id', 'datetime'], keep=False)]","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.364447Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.364736Z","level":"info","event":"# Check for missing values","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.365041Z","level":"info","event":"missing_data = df.isnull().sum()","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.365289Z","level":"info","event":"","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.365559Z","level":"info","event":"# Analyze timestamp issues","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.365821Z","level":"info","event":"timestamp_issues = df[df['datetime'].isnull()]","chan":"stdout","logger":"task"}
+{"timestamp":"2025-08-01T00:03:01.565902","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}
