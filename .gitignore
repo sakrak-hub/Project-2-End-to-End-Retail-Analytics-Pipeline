@@ -6,3 +6,4 @@ retail_data_v2/
 online_data/
 uv.lock
 main.py
+logs/
