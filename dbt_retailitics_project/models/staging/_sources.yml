@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: RETAILITICS_TRANSACTIONS
+    database: DBT_RETAILITICS
+    schema: RETAILITICS_TRANSACTIONS
+    tables:
+      - name: CUSTOMERS
+      - name: PRODUCTS
+      - name: STORES
+      - name: TRANSACTIONS
