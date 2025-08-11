@@ -1,0 +1,100 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "List of customers for the shop"
+    columns:
+        - name: customer_id
+          descriptions:
+          tests:
+            - unique
+            - not_null
+
+        - name: first_name
+          descriptions:
+          tests:
+            - unique
+            - not_null 
+
+        - name: last_name
+          descriptions:
+          tests:
+            - unique
+            - not_null       
+        - name: email
+          descriptions:
+          tests:
+            - unique
+            - not_null   
+            
+        - name: phone
+          descriptions:
+          tests:
+            - unique
+            - not_null
+        
+        - name: address
+          descriptions:
+          tests:
+            - unique
+            - not_null
+
+        - name: city
+          descriptions:
+          tests:
+            - unique
+            - not_null
+
+        - name: state
+          descriptions:
+          tests:
+            - unique
+            - not_null
+
+        - name: zip_code
+          descriptions:
+          tests:
+            - unique
+            - not_null
+  
+        - name: date_of_birth
+          descriptions:
+          tests:
+            - unique
+            - not_null
+
+        - name: gender
+          descriptions:
+          tests:
+            - unique
+            - not_null    
+        
+        - name: registration_date
+          descriptions:
+          tests:
+            - unique
+            - not_null
+        
+        - name: loyalty_member
+          descriptions:
+          tests:
+            - unique
+            - not_null
+
+        - name: preferred_contact
+          descriptions:
+          tests:
+            - unique
+            - not_null
+
+        - name: customer_segment
+          descriptions:
+          tests:
+            - unique
+            - not_null
+
+        - name: total_lifetime_value
+          descriptions:
+          tests:
+            - unique
+            - not_null
