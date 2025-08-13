@@ -2,99 +2,406 @@ version: 2
 
 models:
   - name: stg_customers
-    description: "List of customers for the shop"
+    description: "Cleaned and validated customer master data"
     columns:
-        - name: customer_id
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: customer_id
+        description: "Primary key for customers"
+        tests:
+          - unique
+          - not_null
 
-        - name: first_name
-          descriptions:
-          tests:
-            - unique
-            - not_null 
+      - name: first_name
+        description: "Customer first name"
+        tests:
+          - not_null 
 
-        - name: last_name
-          descriptions:
-          tests:
-            - unique
-            - not_null       
-        - name: email
-          descriptions:
-          tests:
-            - unique
-            - not_null   
+      - name: last_name
+        description: "Customer last name"
+        tests:
+          - not_null   
+
+      - name: email
+        description: "Customer email address - should be unique"
+        tests:
+          - unique
+          - not_null   
             
-        - name: phone
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: phone
+        description: "Customer phone number"
+        tests:
+          - not_null
         
-        - name: address
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: address
+        description: "Customer street address"
+        tests:
+          - not_null
 
-        - name: city
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: city
+        description: "Customer city"
+        tests:
+          - not_null
 
-        - name: state
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: state
+        description: "Customer state"
+        tests:
+          - not_null
 
-        - name: zip_code
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: zip_code
+        description: "Customer zip code"
+        tests:
+          - not_null
   
-        - name: date_of_birth
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: date_of_birth
+        description: "Customer date of birth"
+        tests:
+          - not_null
 
-        - name: gender
-          descriptions:
-          tests:
-            - unique
-            - not_null    
+      - name: gender
+        description: "Customer gender"
+        tests:
+          - not_null    
         
-        - name: registration_date
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: registration_date
+        description: "Date customer registered"
+        tests:
+          - not_null
         
-        - name: loyalty_member
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: loyalty_member
+        description: "Whether customer is loyalty member"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
 
-        - name: preferred_contact
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: preferred_contact
+        description: "Customer preferred contact method"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['email', 'phone', 'mail', 'sms']
 
-        - name: customer_segment
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: customer_segment
+        description: "Business-defined customer segment"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['VIP', 'Premium', 'Regular', 'Budget']
 
-        - name: total_lifetime_value
-          descriptions:
-          tests:
-            - unique
-            - not_null
+      - name: total_lifetime_value
+        description: "Total customer lifetime value"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100000
+  
+  - name: stg_products
+    description: "Cleaned and validated product catalog data"
+    columns:
+      - name: product_id
+        description: "Primary key for products"
+        tests:
+          - unique
+          - not_null
+
+      - name: product_name
+        description: "Product display name"
+        tests:
+          # REMOVED unique - different products might have similar names
+          - not_null
+
+      - name: category 
+        description: "Primary product category"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Electronics', 'Clothing', 'Home & Garden', 'Sports', 'Books', 'Beauty', 'Automotive', 'Food']
+
+      - name: subcategory
+        description: "Product subcategory"
+        tests:
+          - not_null
+
+      - name: brand 
+        description: "Product brand name"
+        tests:
+          - not_null
+
+      - name: price 
+        description: "Product retail price"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.01
+              max_value: 10000.00
+
+      - name: cost 
+        description: "Product cost basis"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.01
+              max_value: 5000.00
+
+      - name: sku
+        description: "Stock keeping unit identifier"
+        tests:
+          - not_null
+          - unique  # SKUs should be unique
+
+      - name: description 
+        description: "Product description"
+        tests:
+          # REMOVED unique - descriptions might be similar
+          - not_null
+
+      - name: weight 
+        description: "Product weight"
+        tests:
+          - not_null
+
+      - name: dimensions 
+        description: "Product dimensions"
+        tests:
+          - not_null
+
+      - name: stock_quantity 
+        description: "Current stock level"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 10000
+
+      - name: supplier 
+        description: "Product supplier"
+        tests:
+          - not_null
+
+      - name: launch_date
+        description: "Product launch date"
+        tests:
+          - not_null
+  
+  - name: stg_stores
+    description: "Cleaned and validated store location data"
+    columns:
+      - name: store_id 
+        description: "Primary key for stores"
+        tests:
+          - unique
+          - not_null
+
+      - name: store_name 
+        description: "Store display name"
+        tests:
+          - unique  # Store names should be unique
+          - not_null
+
+      - name: address 
+        description: "Store street address"
+        tests:
+          - unique  # Each store should have unique address
+          - not_null
+
+      - name: city 
+        description: "Store city"
+        tests:
+          - not_null
+
+      - name: state 
+        description: "Store state"
+        tests:
+          - not_null
+
+      - name: zip_code 
+        description: "Store zip code"
+        tests:
+          - not_null
+
+      - name: phone 
+        description: "Store phone number"
+        tests:
+          - unique  # Each store should have unique phone
+          - not_null
+
+      - name: manager 
+        description: "Store manager name"
+        tests:
+          # REMOVED unique - same person could manage multiple stores
+          - not_null
+
+      - name: store_type 
+        description: "Type of store"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['flagship', 'standard', 'outlet', 'popup', 'online']
+
+      - name: opening_date
+        description: "Store opening date"
+        tests:
+          - not_null
+
+  - name: stg_retail_transactions
+    description: "Cleaned transaction data with line item details"
+    # NOTE: This appears to be a denormalized table with both transaction and line item data
+    tests:
+      # Add table-level tests
+      - dbt_expectations.expect_table_row_count_to_be_between:
+          min_value: 1000
+          max_value: 50000000
+    columns:
+      - name: transaction_id
+        description: "Transaction identifier (not unique due to line items)"
+        tests:
+          # REMOVED unique - multiple line items per transaction
+          - not_null
+
+      - name: transaction_date
+        description: "Transaction date"
+        tests:
+          - not_null
+
+      - name: transaction_time
+        description: "Transaction time"
+        tests:
+          - not_null
+
+      - name: transaction_datetime
+        description: "Combined transaction date and time"
+        tests:
+          - not_null
+
+      - name: customer_id
+        description: "Foreign key to customers"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+
+      - name: store_id
+        description: "Foreign key to stores"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_stores')
+              field: store_id
+
+      - name: store_name
+        description: "Store name (denormalized)"
+        tests:
+          - not_null
+
+      - name: cashier_id
+        description: "Cashier identifier"
+        tests:
+          - not_null
+
+      - name: payment_method
+        description: "Payment method used"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['cash', 'credit_card', 'debit_card', 'mobile_pay', 'check']
+
+      - name: subtotal
+        description: "Transaction subtotal"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100000
+
+      - name: tax_amount
+        description: "Tax amount"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 10000
+
+      - name: total_amount
+        description: "Total transaction amount"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.01
+              max_value: 100000
+
+      - name: items_count
+        description: "Number of items in transaction"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+              max_value: 100
+
+      - name: loyalty_points_earned
+        description: "Loyalty points earned"
+        tests:
+          - not_null
+
+      - name: promotion_code
+        description: "Promotion code used (nullable)"
+        # No tests - can be null
+
+      - name: refund_reason
+        description: "Reason for refund (nullable)"
+        # No tests - can be null
+
+      - name: status
+        description: "Transaction status (nullable)"
+        tests:
+          - accepted_values:
+              values: ['completed', 'refunded', 'cancelled', 'pending']
+
+      - name: product_id
+        description: "Product in this line item"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_products')
+              field: product_id
+
+      - name: product_name
+        description: "Product name (denormalized)"
+        tests:
+          - not_null
+
+      - name: category
+        description: "Product category (denormalized)"
+        tests:
+          - not_null
+
+      - name: quantity
+        description: "Quantity of this product"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1
+              max_value: 100
+
+      - name: unit_price
+        description: "Price per unit"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.01
+              max_value: 10000
+
+      - name: discount_percent
+        description: "Discount percentage applied (nullable)"
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100
+
+      - name: line_total
+        description: "Total for this line item"
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0.01
+              max_value: 10000
