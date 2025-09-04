@@ -11,9 +11,7 @@ dependencies = [
     "faker>=37.4.2",
     "fastparquet>=2024.11.0",
     "ipykernel>=6.29.5",
-    "psycopg2>=2.9.10",
     "pyarrow>=21.0.0",
-    "sqlalchemy>=2.0.43",
 ]
 
 [dependency-groups]
