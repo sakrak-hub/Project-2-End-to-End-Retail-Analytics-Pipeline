@@ -2,6 +2,8 @@
 
 PROJECT_URL="/mnt/d/Projects/Project-2-End-to-End-Retail-Analytics-Pipeline/"
 
+cd ${PROJECT_URL}
+
 source ${PROJECT_URL}/.venv/bin/activate
 mv ${PROJECT_URL}.env ${PROJECT_URL}secrets/.env
 echo "env file moved to secrets"
